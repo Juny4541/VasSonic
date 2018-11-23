@@ -12,7 +12,7 @@ import android.widget.Button;
  */
 public class MainActivity extends AppCompatActivity {
     public static final int MODE_DEFAULT = 0;
-    public static final String DEMO_URL = "http://borrow-jy.oss-cn-hangzhou.aliyuncs.com/borrow/html/agreement_provide_guarantee.html";
+    public static final String DEMO_URL = "https://www.baidu.com/";
     private Button mSonicBtn;
     private Button mSystemBtn;
 
@@ -25,22 +25,31 @@ public class MainActivity extends AppCompatActivity {
         mSonicBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startBrowserActivity(MODE_DEFAULT);
+                startSonicWebViewActivity(MODE_DEFAULT);
             }
         });
         mSystemBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                startSystemWebViewActivity(MODE_DEFAULT);
             }
         });
     }
 
-    private void startBrowserActivity(int mode) {
+    private void startSonicWebViewActivity(int mode) {
         Intent intent = new Intent(this, SonicWebViewActivity.class);
         intent.putExtra(SonicWebViewActivity.PARAM_URL, DEMO_URL);
         intent.putExtra(SonicWebViewActivity.PARAM_MODE, mode);
         intent.putExtra(SonicJavaScriptInterface.PARAM_CLICK_TIME, System.currentTimeMillis());
         startActivityForResult(intent, -1);
     }
+
+    private void startSystemWebViewActivity(int mode) {
+        Intent intent = new Intent(this, SystemWebViewActivity.class);
+        intent.putExtra(SonicWebViewActivity.PARAM_URL, DEMO_URL);
+        intent.putExtra(SonicWebViewActivity.PARAM_MODE, mode);
+        intent.putExtra(SonicJavaScriptInterface.PARAM_CLICK_TIME, System.currentTimeMillis());
+        startActivityForResult(intent, -1);
+    }
+
 }
